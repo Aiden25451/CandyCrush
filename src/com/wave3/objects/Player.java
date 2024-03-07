@@ -11,10 +11,11 @@ public class Player extends GameObject{
 	
 	private KeyboardListener keyboardListener;
 
-	public Player(Handler handler, ID id, KeyboardListener keyboardListener) {
-		super(handler, id);
+	public Player(Handler handler, KeyboardListener keyboardListener) {
+		super(handler);
 		
 		this.keyboardListener = keyboardListener;
+		id = ID.PLAYER;
 		
 		velX = 0;
 		velY = 0;

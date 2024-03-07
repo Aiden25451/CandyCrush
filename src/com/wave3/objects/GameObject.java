@@ -15,17 +15,16 @@ public abstract class GameObject {
 	protected Map<String, Boolean> hit = new HashMap<String,Boolean>();
 	
 //	Constructors
-	public GameObject(Handler handler, ID id) {
+	public GameObject(Handler handler) {
 		this.handler = handler;
-		this.id = id;
 		
 		hit.put("up", false);
 		hit.put("down", false);
 		hit.put("right", false);
 		hit.put("left", false);
 	}
-	public GameObject(Handler handler, ID id, Rectangle rectangle) {
-		this(handler, id);
+	public GameObject(Handler handler, Rectangle rectangle) {
+		this(handler);
 		this.rectangle = rectangle;
 	}
 	

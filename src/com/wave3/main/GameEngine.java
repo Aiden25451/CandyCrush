@@ -26,6 +26,8 @@ public class GameEngine implements Runnable{
 	private Random random;
 	private KeyboardListener keyboardListener;
 	
+	private int tempTimer = -1;
+	
 	public GameEngine() {
 //		this.handler = handler;
 		keyboardListener = new KeyboardListener();
@@ -38,10 +40,7 @@ public class GameEngine implements Runnable{
 		
 		
 		
-		handler.addObject(new Player(handler, ID.PLAYER, keyboardListener));
-		for(int i = 0; i < 10; i++)
-			handler.addObject(new BasicEnemy(handler, ID.BASICENEMY, new Rectangle(300, 300, 25, 25)));
-
+		handler.addObject(new Player(handler, keyboardListener));
 	}
 	
 	public void start() {
@@ -96,6 +95,18 @@ public class GameEngine implements Runnable{
 	
 	private void tick() {
 		handler.tick();
+		
+		
+//		TEMPORARY CODE TO SPAWN ENNEMIES
+		if(tempTimer == -1) {
+			tempTimer = 120;
+			
+			handler.addObject(new BasicEnemy(handler, new Rectangle(
+					0, 0, handler.getRandom().nextInt(25) + 25, handler.getRandom().nextInt(25) + 25
+			)));
+		}
+		tempTimer--;
+//		END OF TEMPORARY CODE
 	}
 	
 	private void render() {
