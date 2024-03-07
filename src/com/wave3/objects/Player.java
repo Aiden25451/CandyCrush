@@ -1,11 +1,11 @@
-package com.candycrush.objects;
+package com.wave3.objects;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
-import com.candycrush.listeners.KeyboardListener;
-import com.candycrush.main.GameWindow;
+import com.wave3.listeners.KeyboardListener;
+import com.wave3.main.GameWindow;
 
 public class Player extends GameObject{
 	

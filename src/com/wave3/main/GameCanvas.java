@@ -1,4 +1,4 @@
-package com.candycrush.main;
+package com.wave3.main;
 
 import java.awt.Canvas;
 import java.awt.image.BufferStrategy;

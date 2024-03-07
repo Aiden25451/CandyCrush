@@ -1,4 +1,4 @@
-package com.candycrush.gbc;
+package com.wave3.gbc;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 

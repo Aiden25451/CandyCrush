@@ -1,11 +1,11 @@
-package com.candycrush.objects;
+package com.wave3.objects;
 
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.candycrush.main.GameWindow;
+import com.wave3.main.GameWindow;
 
 public abstract class GameObject {
 	protected Handler handler;

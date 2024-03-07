@@ -1,10 +1,10 @@
-package com.candycrush.objects;
+package com.wave3.objects;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Random;
 
-import com.candycrush.listeners.KeyboardListener;
+import com.wave3.listeners.KeyboardListener;
 
 public class Handler {
 	private ArrayList<GameObject> objects = new ArrayList<GameObject>();

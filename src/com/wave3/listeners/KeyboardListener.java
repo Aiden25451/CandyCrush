@@ -1,4 +1,4 @@
-package com.candycrush.listeners;
+package com.wave3.listeners;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

@@ -1,4 +1,4 @@
-package com.candycrush.main;
+package com.wave3.main;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -6,12 +6,12 @@ import java.awt.Rectangle;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
 
-import com.candycrush.gbc.GBC;
-import com.candycrush.listeners.KeyboardListener;
-import com.candycrush.objects.BasicEnemy;
-import com.candycrush.objects.Handler;
-import com.candycrush.objects.ID;
-import com.candycrush.objects.Player;
+import com.wave3.gbc.GBC;
+import com.wave3.listeners.KeyboardListener;
+import com.wave3.objects.BasicEnemy;
+import com.wave3.objects.Handler;
+import com.wave3.objects.ID;
+import com.wave3.objects.Player;
 
 public class GameEngine implements Runnable{
 	

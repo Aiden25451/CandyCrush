@@ -1,4 +1,4 @@
-package com.candycrush.main;
+package com.wave3.main;
 
 import java.awt.GridBagLayout;
 
