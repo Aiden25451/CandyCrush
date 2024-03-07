@@ -13,7 +13,7 @@ public class GameWindow extends JFrame {
 		this.setLayout(layout);
 		
 		this.setTitle("CANDY CRUSH");
-		this.setSize(GAMEWIDTH, GAMEHEIGHT);
+		this.setSize(GAMEWIDTH + 15, GAMEHEIGHT + 40);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);

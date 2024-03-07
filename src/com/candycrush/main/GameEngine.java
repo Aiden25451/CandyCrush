@@ -2,10 +2,16 @@ package com.candycrush.main;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.image.BufferStrategy;
+import java.util.Random;
 
 import com.candycrush.gbc.GBC;
+import com.candycrush.listeners.KeyboardListener;
+import com.candycrush.objects.BasicEnemy;
 import com.candycrush.objects.Handler;
+import com.candycrush.objects.ID;
+import com.candycrush.objects.Player;
 
 public class GameEngine implements Runnable{
 	
@@ -17,12 +23,25 @@ public class GameEngine implements Runnable{
 	private GameCanvas gameCanvas;
 	private GameWindow gameWindow;
 	private Handler handler;
+	private Random random;
+	private KeyboardListener keyboardListener;
 	
 	public GameEngine() {
 //		this.handler = handler;
+		keyboardListener = new KeyboardListener();
+		random = new Random();
 		gameWindow  = new GameWindow();
 		gameCanvas = new GameCanvas();
-		handler = new Handler();
+		gameCanvas.addKeyListener(keyboardListener.getListener());
+		handler = new Handler(keyboardListener, random);
+		
+		
+		
+		
+		handler.addObject(new Player(handler, ID.PLAYER, keyboardListener));
+		for(int i = 0; i < 10; i++)
+			handler.addObject(new BasicEnemy(handler, ID.BASICENEMY, new Rectangle(300, 300, 25, 25)));
+
 	}
 	
 	public void start() {
@@ -55,14 +74,20 @@ public class GameEngine implements Runnable{
 				tick();
 				updatesCounter++;
 				delta--;
+//				I MADE A SMALL CHANGE
+				render();
+				framesCounter++;
+//				END OF SMALL CHANGE
 			}
 
-			render();
-			framesCounter++;
+/*          Moving the comment below up
+//			render();
+//			framesCounter++;
+ */
 
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
-				System.out.println("Updates per second: " + updatesCounter + ", Frames per second: " + framesCounter);
+//				System.out.println("Updates per second: " + updatesCounter + ", Frames per second: " + framesCounter);
 				updatesCounter = 0;
 				framesCounter = 0;
 			}
@@ -70,7 +95,7 @@ public class GameEngine implements Runnable{
 	}
 	
 	private void tick() {
-		
+		handler.tick();
 	}
 	
 	private void render() {
@@ -78,6 +103,8 @@ public class GameEngine implements Runnable{
 		
 		g2d.setColor(Color.BLACK);
 		g2d.fillRect(0, 0, GameWindow.GAMEWIDTH, GameWindow.GAMEHEIGHT);
+		
+		handler.render(g2d);
 		
 		g2d.dispose();
 		bufferStrategy.show();
