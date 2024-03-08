@@ -14,11 +14,6 @@ public class BasicEnemy extends GameObject{
 		super(handler, rectangle);
 		// TODO Auto-generated constructor stub
 		id = ID.BASICENEMY;
-//		Set a random location and random speed
-		rectangle.setLocation(
-				(int)handler.getRandom().nextInt(GameWindow.GAMEWIDTH - 100), 
-				(int)handler.getRandom().nextInt(GameWindow.GAMEHEIGHT - 100)
-		);
 	}
 
 	@Override
@@ -48,7 +43,7 @@ public class BasicEnemy extends GameObject{
 	@Override
 	public void render(Graphics2D g2d) {
 		// TODO Auto-generated method stub
-		g2d.setColor(Color.red);
+		g2d.setColor(Color.blue);
 		if(spawn_timer > 0) {
 			g2d.drawRect(
 				(int)rectangle.getX(), 

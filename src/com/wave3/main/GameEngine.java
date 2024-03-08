@@ -102,7 +102,10 @@ public class GameEngine implements Runnable{
 			tempTimer = 120;
 			
 			handler.addObject(new BasicEnemy(handler, new Rectangle(
-					0, 0, handler.getRandom().nextInt(25) + 25, handler.getRandom().nextInt(25) + 25
+					handler.getRandom().nextInt(GameWindow.GAMEWIDTH) - 75, 
+					handler.getRandom().nextInt(GameWindow.GAMEHEIGHT) - 75, 
+					handler.getRandom().nextInt(25) + 25, 
+					handler.getRandom().nextInt(25) + 25
 			)));
 		}
 		tempTimer--;
