@@ -8,9 +8,8 @@ import java.util.Random;
 
 import com.wave3.gbc.GBC;
 import com.wave3.listeners.KeyboardListener;
-import com.wave3.objects.BasicEnemy;
+import com.wave3.objects.ExplosionEnemy;
 import com.wave3.objects.Handler;
-import com.wave3.objects.ID;
 import com.wave3.objects.Player;
 
 public class GameEngine implements Runnable{
@@ -99,13 +98,13 @@ public class GameEngine implements Runnable{
 		
 //		TEMPORARY CODE TO SPAWN ENNEMIES
 		if(tempTimer == -1) {
-			tempTimer = 120;
+			tempTimer = 60;
 			
-			handler.addObject(new BasicEnemy(handler, new Rectangle(
+			handler.addObject(new ExplosionEnemy(handler, new Rectangle(
 					handler.getRandom().nextInt(GameWindow.GAMEWIDTH) - 75, 
 					handler.getRandom().nextInt(GameWindow.GAMEHEIGHT) - 75, 
-					handler.getRandom().nextInt(25) + 25, 
-					handler.getRandom().nextInt(25) + 25
+					100, 
+					100
 			)));
 		}
 		tempTimer--;
