@@ -2,18 +2,25 @@ package com.wave3.objects;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
+import java.util.Random;
 
+import com.wave3.gameElement.HUD;
+import com.wave3.gameElement.Handler;
 import com.wave3.main.GameWindow;
 
 public class FastEnemy extends GameObject{
 	
 	private int spawn_timer = 60;
 
-	public FastEnemy(Handler handler, Rectangle rectangle) {
-		super(handler, rectangle);
+	public FastEnemy(Handler handler) {
+		super(handler);
 		// TODO Auto-generated constructor stub
 		id = ID.BASICENEMY;
+		
+		x = handler.getRandom().nextInt(GameWindow.GAMEWIDTH - 200) + 50;
+		y = handler.getRandom().nextInt(GameWindow.GAMEHEIGHT - 200) + 50;
+		width = 25;
+		height = 25;
 	}
 
 	@Override
@@ -29,10 +36,8 @@ public class FastEnemy extends GameObject{
 			spawn_timer--;
 		}
 		// Update the position
-		rectangle.setLocation(
-			(int)rectangle.getX() + velX, 
-			(int)rectangle.getY() + velY
-		);
+		x += velX;
+		y += velY;
 
 		clamp();
 		
@@ -43,22 +48,12 @@ public class FastEnemy extends GameObject{
 	@Override
 	public void render(Graphics2D g2d) {
 		// TODO Auto-generated method stub
-		g2d.setColor(Color.green);
+		g2d.setColor(Color.orange);
 		if(spawn_timer > 0) {
-			g2d.drawRect(
-				(int)rectangle.getX(), 
-				(int)rectangle.getY(), 
-				(int)rectangle.getWidth(), 
-				(int)rectangle.getHeight()
-			);
+			g2d.drawRect((int)x, (int)y, (int)width, (int)height);
 		}
 		else {
-			g2d.fillRect(
-				(int)rectangle.getX(), 
-				(int)rectangle.getY(), 
-				(int)rectangle.getWidth(), 
-				(int)rectangle.getHeight()
-			);
+			g2d.fillRect((int)x, (int)y, (int)width, (int)height);
 		}
 	}
 
@@ -66,7 +61,7 @@ public class FastEnemy extends GameObject{
 	public void collision(ID id) {
 		// Temporary code to remove the BasicEnemy if it hits the player
 		if(id == ID.PLAYER && spawn_timer == -1) {
-			handler.removeObject(this);
+			HUD.health -= 5;
 		}
 	}
 	

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
+import com.wave3.gameElement.Handler;
 import com.wave3.listeners.KeyboardListener;
 import com.wave3.main.GameWindow;
 
@@ -20,7 +21,10 @@ public class Player extends GameObject{
 		velX = 0;
 		velY = 0;
 		
-		rectangle = new Rectangle(0, 0, 50, 50);
+		x = 50;
+		y = 50;
+		width = 50;
+		height = 50;
 	}
 
 	@Override
@@ -45,10 +49,8 @@ public class Player extends GameObject{
 			velY = 0;
 	
 		//Update player position
-		rectangle.setLocation(
-			(int)rectangle.getX() + velX, 
-			(int)rectangle.getY() + velY
-		);
+		x += velX;
+		y += velY;
 		
 		//Keep player in bounds
 		clamp();
@@ -58,12 +60,7 @@ public class Player extends GameObject{
 	public void render(Graphics2D g2d) {
 		// TODO Auto-generated method stub
 		g2d.setColor(Color.white);
-		g2d.fillRect(
-			(int)rectangle.getX(), 
-			(int)rectangle.getY(), 
-			(int)rectangle.getWidth(), 
-			(int)rectangle.getHeight()
-		);
+		g2d.fillRect((int)x, (int)y, (int)width, (int)height);
 	}
 
 	@Override

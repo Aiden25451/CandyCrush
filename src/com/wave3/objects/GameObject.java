@@ -4,13 +4,16 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
+import com.wave3.gameElement.Handler;
 import com.wave3.main.GameWindow;
 
 public abstract class GameObject {
 	protected Handler handler;
 	protected Rectangle rectangle;	
-	protected int velX, velY;
+	protected float x, y, width, height;
+	protected float velX, velY;
 	protected ID id;
 	protected Map<String, Boolean> hit = new HashMap<String,Boolean>();
 	
@@ -23,9 +26,12 @@ public abstract class GameObject {
 		hit.put("right", false);
 		hit.put("left", false);
 	}
-	public GameObject(Handler handler, Rectangle rectangle) {
+	public GameObject(Handler handler, float x, float y, float width, float height) {
 		this(handler);
-		this.rectangle = rectangle;
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
 	}
 	
 //	Methods that every GameObject should have
@@ -35,50 +41,68 @@ public abstract class GameObject {
 	
 //	Used to stop/indicate when a wall is hit
 	public void clamp() {
-		if(this.rectangle.getX() < 0) {
-			this.rectangle.setLocation(0, (int)this.rectangle.getY());
+		if(x < 0) {
+			x = 0;
 			hit.put("left", true);
 		} else {hit.put("left", false);}
 		
-		if(this.rectangle.getX() + this.rectangle.getWidth() > GameWindow.GAMEWIDTH) {
-			this.rectangle.setLocation(
-				GameWindow.GAMEWIDTH - (int)this.rectangle.getWidth(), 
-				(int)this.rectangle.getY()
-			);
+		if(x + width > GameWindow.GAMEWIDTH) {
+			x = GameWindow.GAMEWIDTH - width;
 			hit.put("right", true);
 		} else {hit.put("right", false);}
 		
-		if(this.rectangle.getY() < 0) {
-			this.rectangle.setLocation((int)this.rectangle.getX(), 0);
+		if(y < 0) {
+			y = 0;
 			hit.put("up", true);
 		} else {hit.put("up", false);}
 		
-		if(this.rectangle.getY() + this.rectangle.getHeight() > GameWindow.GAMEHEIGHT) {
-			this.rectangle.setLocation(
-				(int)this.rectangle.getX(),
-				GameWindow.GAMEHEIGHT - (int)this.rectangle.getHeight()
-			);
+		if(y + height > GameWindow.GAMEHEIGHT) {
+			y = GameWindow.GAMEHEIGHT - height;
 			hit.put("down", true);
 		} else {hit.put("down", false);}
 	}
 	
 //	Getters and Setters
 	public Rectangle getRectangle() {
-		return this.rectangle;
+		return new Rectangle((int) x, (int) y, (int) width, (int) height);
 	}
 	public void setRectangle(Rectangle newRectangle) {
 		this.rectangle = newRectangle;
 	}
-	public int getVelX() {
+	public float getX() {
+		return this.x;
+	}
+	public float getY() {
+		return this.y;
+	}
+	public float getWidth() {
+		return this.width;
+	}
+	public float getHeight() {
+		return this.height;
+	}
+	public void setX(float x) {
+		this.x = x;
+	}
+	public void setY(float y) {
+		this.y = y;
+	}
+	public void setWidth(float width) {
+		this.width = width;
+	}
+	public void setHeight(float height) {
+		this.height = height;
+	}
+	public float getVelX() {
 		return this.velX;
 	}
-	public void setVelX(int velX) {
+	public void setVelX(float velX) {
 		this.velX = velX;
 	}
-	public int getVelY() {
+	public float getVelY() {
 		return this.velY;
 	}
-	public void setVelY(int velY) {
+	public void setVelY(float velY) {
 		this.velY = velY;
 	}
 	public ID getId() {

@@ -1,10 +1,11 @@
-package com.wave3.objects;
+package com.wave3.gameElement;
 
 import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.Random;
 
 import com.wave3.listeners.KeyboardListener;
+import com.wave3.objects.GameObject;
 
 public class Handler {
 	private ArrayList<GameObject> objects = new ArrayList<GameObject>();

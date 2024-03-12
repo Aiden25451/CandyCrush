@@ -2,15 +2,18 @@ package com.wave3.main;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.awt.image.BufferStrategy;
 import java.util.Random;
 
+import com.wave3.gameElement.HUD;
+import com.wave3.gameElement.Handler;
 import com.wave3.gbc.GBC;
 import com.wave3.listeners.KeyboardListener;
+import com.wave3.objects.BasicEnemy;
 import com.wave3.objects.ExplosionEnemy;
-import com.wave3.objects.Handler;
+import com.wave3.objects.FastEnemy;
 import com.wave3.objects.Player;
+import com.wave3.objects.SmartEnemy;
 
 public class GameEngine implements Runnable{
 	
@@ -24,6 +27,7 @@ public class GameEngine implements Runnable{
 	private Handler handler;
 	private Random random;
 	private KeyboardListener keyboardListener;
+	private HUD hud;
 	
 	private int tempTimer = -1;
 	
@@ -35,11 +39,15 @@ public class GameEngine implements Runnable{
 		gameCanvas = new GameCanvas();
 		gameCanvas.addKeyListener(keyboardListener.getListener());
 		handler = new Handler(keyboardListener, random);
-		
+		hud = new HUD(handler);
 		
 		
 		
 		handler.addObject(new Player(handler, keyboardListener));
+		handler.addObject(new SmartEnemy(handler));
+		handler.addObject(new FastEnemy(handler));
+		handler.addObject(new BasicEnemy(handler));
+		
 	}
 	
 	public void start() {
@@ -85,7 +93,7 @@ public class GameEngine implements Runnable{
 
 			if (System.currentTimeMillis() - timer > 1000) {
 				timer += 1000;
-//				System.out.println("Updates per second: " + updatesCounter + ", Frames per second: " + framesCounter);
+				System.out.println("Updates per second: " + updatesCounter + ", Frames per second: " + framesCounter);
 				updatesCounter = 0;
 				framesCounter = 0;
 			}
@@ -94,18 +102,16 @@ public class GameEngine implements Runnable{
 	
 	private void tick() {
 		handler.tick();
+		hud.tick();
 		
 		
 //		TEMPORARY CODE TO SPAWN ENNEMIES
 		if(tempTimer == -1) {
-			tempTimer = 60;
+			tempTimer = 240;
 			
-			handler.addObject(new ExplosionEnemy(handler, new Rectangle(
-					handler.getRandom().nextInt(GameWindow.GAMEWIDTH) - 75, 
-					handler.getRandom().nextInt(GameWindow.GAMEHEIGHT) - 75, 
-					100, 
-					100
-			)));
+			handler.addObject(new ExplosionEnemy(handler));
+			handler.addObject(new ExplosionEnemy(handler));
+			
 		}
 		tempTimer--;
 //		END OF TEMPORARY CODE
@@ -118,6 +124,7 @@ public class GameEngine implements Runnable{
 		g2d.fillRect(0, 0, GameWindow.GAMEWIDTH, GameWindow.GAMEHEIGHT);
 		
 		handler.render(g2d);
+		hud.render(g2d);
 		
 		g2d.dispose();
 		bufferStrategy.show();
