@@ -26,10 +26,13 @@ public abstract class GameObject {
 		hit.put("right", false);
 		hit.put("left", false);
 	}
-	public GameObject(Handler handler, float x, float y, float width, float height) {
+	public GameObject(Handler handler, float x, float y) {
 		this(handler);
 		this.x = x;
 		this.y = y;
+	}
+	public GameObject(Handler handler, float x, float y, float width, float height) {
+		this(handler, x, y);
 		this.width = width;
 		this.height = height;
 	}

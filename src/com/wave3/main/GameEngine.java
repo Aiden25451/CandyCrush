@@ -7,6 +7,7 @@ import java.util.Random;
 
 import com.wave3.gameElement.HUD;
 import com.wave3.gameElement.Handler;
+import com.wave3.gameElement.Spawner;
 import com.wave3.gbc.GBC;
 import com.wave3.listeners.KeyboardListener;
 import com.wave3.objects.BasicEnemy;
@@ -17,37 +18,32 @@ import com.wave3.objects.SmartEnemy;
 
 public class GameEngine implements Runnable{
 	
-	private int x = 50;
-	
 	private Thread thread;
-	
 	private BufferStrategy bufferStrategy;
+	
 	private GameCanvas gameCanvas;
 	private GameWindow gameWindow;
+	
 	private Handler handler;
+	private Spawner spawner;
 	private Random random;
+	private Gamestate gamestate;
 	private KeyboardListener keyboardListener;
 	private HUD hud;
 	
-	private int tempTimer = -1;
-	
 	public GameEngine() {
-//		this.handler = handler;
+		init();
+	}
+	
+	public void init() {
 		keyboardListener = new KeyboardListener();
 		random = new Random();
+		handler = new Handler(keyboardListener, random);
+		this.gamestate = new Gamestate(handler);
+		
 		gameWindow  = new GameWindow();
 		gameCanvas = new GameCanvas();
 		gameCanvas.addKeyListener(keyboardListener.getListener());
-		handler = new Handler(keyboardListener, random);
-		hud = new HUD(handler);
-		
-		
-		
-		handler.addObject(new Player(handler, keyboardListener));
-		handler.addObject(new SmartEnemy(handler));
-		handler.addObject(new FastEnemy(handler));
-		handler.addObject(new BasicEnemy(handler));
-		
 	}
 	
 	public void start() {
@@ -101,20 +97,9 @@ public class GameEngine implements Runnable{
 	}
 	
 	private void tick() {
-		handler.tick();
-		hud.tick();
-		
-		
-//		TEMPORARY CODE TO SPAWN ENNEMIES
-		if(tempTimer == -1) {
-			tempTimer = 240;
-			
-			handler.addObject(new ExplosionEnemy(handler));
-			handler.addObject(new ExplosionEnemy(handler));
-			
-		}
-		tempTimer--;
-//		END OF TEMPORARY CODE
+//		handler.tick();
+//		hud.tick();
+		gamestate.tick();
 	}
 	
 	private void render() {
@@ -123,8 +108,9 @@ public class GameEngine implements Runnable{
 		g2d.setColor(Color.BLACK);
 		g2d.fillRect(0, 0, GameWindow.GAMEWIDTH, GameWindow.GAMEHEIGHT);
 		
-		handler.render(g2d);
-		hud.render(g2d);
+//		handler.render(g2d);
+//		hud.render(g2d);
+		gamestate.render(g2d);
 		
 		g2d.dispose();
 		bufferStrategy.show();

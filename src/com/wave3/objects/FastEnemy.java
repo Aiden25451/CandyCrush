@@ -2,11 +2,10 @@ package com.wave3.objects;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.util.Random;
 
-import com.wave3.gameElement.HUD;
 import com.wave3.gameElement.Handler;
 import com.wave3.main.GameWindow;
+import com.wave3.main.Gamestate;
 
 public class FastEnemy extends GameObject{
 	
@@ -15,7 +14,7 @@ public class FastEnemy extends GameObject{
 	public FastEnemy(Handler handler) {
 		super(handler);
 		// TODO Auto-generated constructor stub
-		id = ID.BASICENEMY;
+		id = ID.WAITINGENEMY;
 		
 		x = handler.getRandom().nextInt(GameWindow.GAMEWIDTH - 200) + 50;
 		y = handler.getRandom().nextInt(GameWindow.GAMEHEIGHT - 200) + 50;
@@ -61,7 +60,7 @@ public class FastEnemy extends GameObject{
 	public void collision(ID id) {
 		// Temporary code to remove the BasicEnemy if it hits the player
 		if(id == ID.PLAYER && spawn_timer == -1) {
-			HUD.health -= 5;
+			Gamestate.health -= 5;
 		}
 	}
 	

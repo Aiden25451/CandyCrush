@@ -2,12 +2,10 @@ package com.wave3.objects;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.util.Random;
 
-import com.wave3.gameElement.HUD;
 import com.wave3.gameElement.Handler;
 import com.wave3.main.GameWindow;
+import com.wave3.main.Gamestate;
 
 public class SmartEnemy extends GameObject{
 	
@@ -47,8 +45,8 @@ public class SmartEnemy extends GameObject{
 			spawn_timer--;
 		}
 		
-		float diffX = (float) (x - player.getX() + width/2);
-		float diffY = (float) (y - player.getY() + height/2);
+		float diffX = (float) (x - player.getX() - width/2);
+		float diffY = (float) (y - player.getY() - height/2);
 		float distance = (float) Math.sqrt(
 			(Math.pow(x - player.getX(), 2)) +
 			(Math.pow(y - player.getY(), 2))
@@ -79,7 +77,7 @@ public class SmartEnemy extends GameObject{
 	public void collision(ID id) {
 		// Temporary code to remove the BasicEnemy if it hits the player
 		if(id == ID.PLAYER && spawn_timer == -1) {
-			HUD.health -= 10;
+			Gamestate.health -= 10;
 		}
 	}
 	

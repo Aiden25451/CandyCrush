@@ -6,6 +6,8 @@ import java.util.Random;
 
 import com.wave3.listeners.KeyboardListener;
 import com.wave3.objects.GameObject;
+import com.wave3.objects.ID;
+import com.wave3.objects.Player;
 
 public class Handler {
 	private ArrayList<GameObject> objects = new ArrayList<GameObject>();
@@ -33,6 +35,7 @@ public class Handler {
 			GameObject object1 = objects.get(i);
 			temp_objects.remove(object1);
 			
+			if(object1.getId() == ID.PLAYER || object1.getId() == ID.EXPLOSIONENEMY || object1.getId() == ID.WAITINGENEMY)
 			for(int j = 0; j < temp_objects.size(); j++) {
 				GameObject object2 = temp_objects.get(j);
 			
@@ -65,14 +68,32 @@ public class Handler {
 	public void removeAll() {
 		objects.removeAll(objects);
 	}
+
+//	Remove all enemies
+	public void removeEnemies() {
+		for(int i = 0; i < objects.size(); i++) {
+			GameObject temp = objects.get(i);
+			
+			if(temp.getId() != ID.PLAYER && temp.getId() != ID.EXPLOSIONSHARDENEMY) {
+				this.removeObject(temp);
+				i--;
+			}
+		}
+		
+	}
 	
 //	Get a list of all objects
 	public ArrayList<GameObject> getObjects() {
 		return objects;
 	}
-	
+
 //	Get the random instance
 	public Random getRandom() {
 		return random;
+	}
+	
+//	Get keyListener
+	public KeyboardListener getKeyboardListener() {
+		return keyboardListener;
 	}
 }

@@ -21,10 +21,13 @@ public class Player extends GameObject{
 		velX = 0;
 		velY = 0;
 		
-		x = 50;
-		y = 50;
 		width = 50;
 		height = 50;
+		
+		x = GameWindow.GAMEWIDTH / 2 - width/2;
+		y = GameWindow.GAMEHEIGHT / 2 - height/2;
+		System.out.println(x);
+		
 	}
 
 	@Override

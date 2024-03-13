@@ -2,24 +2,19 @@ package com.wave3.objects;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
-import java.util.Random;
 
-import com.wave3.gameElement.HUD;
 import com.wave3.gameElement.Handler;
-import com.wave3.main.GameWindow;
+import com.wave3.main.Gamestate;
 
 public class ExplosionEnemy extends GameObject{
 	
 	private int spawn_timer = 60;
 	private int speed = 2;
 
-	public ExplosionEnemy(Handler handler) {
-		super(handler);
+	public ExplosionEnemy(Handler handler, float x, float y) {
+		super(handler, x, y);
 		// TODO Auto-generated constructor stub
 		id = ID.WAITINGENEMY;
-		x = handler.getRandom().nextInt(GameWindow.GAMEWIDTH - 200) + 50;
-		y = handler.getRandom().nextInt(GameWindow.GAMEHEIGHT - 200) + 50;
 		width = 100;
 		height = 100;
 		
@@ -62,7 +57,7 @@ public class ExplosionEnemy extends GameObject{
 	@Override
 	public void collision(ID id) {
 		if(id == ID.PLAYER && spawn_timer == -1) {
-			HUD.health -= 10;
+			Gamestate.health -= 10;
 		}
 		
 		if(id == ID.EXPLOSIONENEMY && spawn_timer == -1) {

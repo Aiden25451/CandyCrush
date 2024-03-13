@@ -7,6 +7,7 @@ public class KeyboardListener {
 	
 //	Keys in order of up, right, down, left
 	private boolean[] keys = {false, false, false, false};
+	private boolean enter = false;
 	
 	private KeyAdapter listener;
 	
@@ -29,6 +30,9 @@ public class KeyboardListener {
 				if(keyCode == KeyEvent.VK_D) {
 					keys[3] = true;
 				}
+				if(keyCode == KeyEvent.VK_ENTER) {
+					enter = true;
+				}
 				if(keyCode == KeyEvent.VK_ESCAPE) {
 					System.exit(1);
 				}
@@ -49,6 +53,9 @@ public class KeyboardListener {
 				if(keyCode == KeyEvent.VK_D) {
 					keys[3] = false;
 				}
+				if(keyCode == KeyEvent.VK_ENTER) {
+					enter = false;
+				}
 			}
 		};
 	}
@@ -60,6 +67,11 @@ public class KeyboardListener {
 //	get the keys
 	public boolean[] getKeys() {
 		return keys;
+	}
+
+//	get enter key
+	public boolean getEnter() {
+		return enter;
 	}
 	
 }

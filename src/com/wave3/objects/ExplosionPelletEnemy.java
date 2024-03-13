@@ -2,11 +2,9 @@ package com.wave3.objects;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 
-import com.wave3.gameElement.HUD;
 import com.wave3.gameElement.Handler;
-import com.wave3.main.GameWindow;
+import com.wave3.main.Gamestate;
 
 public class ExplosionPelletEnemy extends GameObject{
 	
@@ -41,7 +39,7 @@ public class ExplosionPelletEnemy extends GameObject{
 	public void collision(ID id) {
 		// Temporary code to remove the BasicEnemy if it hits the player
 		if(id == ID.PLAYER) {
-			HUD.health -= 50;
+			Gamestate.health -= 50;
 			handler.removeObject(this);
 		}
 	}
