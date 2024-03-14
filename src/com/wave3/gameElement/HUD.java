@@ -12,6 +12,8 @@ public class HUD {
 	private Handler handler;
 	private Spawner spawner;
 	
+	private int scorePerLevel = 250;
+	
 	
 	
 	public HUD(Handler handler, Spawner spawner) {
@@ -21,7 +23,7 @@ public class HUD {
 	
 	public void tick() {
 		ratio = Gamestate.health/1000;
-		if(Gamestate.score % 500 == 0) {
+		if(Gamestate.score % scorePerLevel == 0) {
 			Gamestate.level++;
 			spawner.nextLevel();
 		}

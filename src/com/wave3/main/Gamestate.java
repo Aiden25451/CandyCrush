@@ -26,11 +26,11 @@ public class Gamestate {
 		this.handler = handler;
 		this.keyboardListener = handler.getKeyboardListener();
 		
-		GAMESTATE = "menu";
+		GAMESTATE = "start";
 	}
 	
 	public void tick() {
-		if(GAMESTATE == "menu") {
+		if(GAMESTATE == "start") {
 //			TASKS
 			
 //			EXIT CONDITION
@@ -46,7 +46,18 @@ public class Gamestate {
 			
 //			EXIT CONDITION
 			if(health <= 0) {
-				GAMESTATE = "menu";
+				GAMESTATE = "start";
+			}
+			else if(keyboardListener.getEscape()) {
+				GAMESTATE = "pause";
+			}
+		}
+		else if(GAMESTATE == "pause") {
+//			TASKS
+			
+//			EXIT CONDITION
+			if(keyboardListener.getEnter()) {
+				GAMESTATE = "game";
 			}
 		}
 	}
@@ -54,16 +65,24 @@ public class Gamestate {
 	
 	
 	public void render(Graphics2D g) {
-		if(GAMESTATE == "menu") {
+		if(GAMESTATE == "start") {
 			g.setFont(new Font("Comic Sans MS", Font.PLAIN, 48));
 			g.setColor(Color.WHITE);
 			g.drawString("Previous Score: " + Gamestate.score, 100, 200);
 			g.drawString("Press Enter to Play!!!", 100, 300);
 		}
-		
-		if(GAMESTATE == "game") {
+		else if(GAMESTATE == "game") {
 			handler.render(g);
 			hud.render(g);
+		}
+		else if(GAMESTATE == "pause") {
+			handler.render(g);
+			hud.render(g);
+			
+			g.setFont(new Font("Comic Sans MS", Font.PLAIN, 48));
+			g.setColor(Color.WHITE);
+			g.drawString("Current Score: " + Gamestate.score, 100, 200);
+			g.drawString("Press Enter to Continue", 100, 300);
 		}
 	}
 	

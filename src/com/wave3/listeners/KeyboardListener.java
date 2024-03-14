@@ -8,6 +8,7 @@ public class KeyboardListener {
 //	Keys in order of up, right, down, left
 	private boolean[] keys = {false, false, false, false};
 	private boolean enter = false;
+	private boolean escape = false;
 	
 	private KeyAdapter listener;
 	
@@ -34,7 +35,7 @@ public class KeyboardListener {
 					enter = true;
 				}
 				if(keyCode == KeyEvent.VK_ESCAPE) {
-					System.exit(1);
+					escape = true;
 				}
 			}
 //			Update when a key is released
@@ -56,6 +57,9 @@ public class KeyboardListener {
 				if(keyCode == KeyEvent.VK_ENTER) {
 					enter = false;
 				}
+				if(keyCode == KeyEvent.VK_ESCAPE) {
+					escape = false;
+				}
 			}
 		};
 	}
@@ -72,6 +76,11 @@ public class KeyboardListener {
 //	get enter key
 	public boolean getEnter() {
 		return enter;
+	}
+	
+//	get escape key
+	public boolean getEscape() {
+		return escape;
 	}
 	
 }

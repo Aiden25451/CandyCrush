@@ -17,6 +17,18 @@ public class ExplosionEnemy extends GameObject{
 		id = ID.WAITINGENEMY;
 		width = 100;
 		height = 100;
+		this.velX = (handler.getRandom().nextInt(2) * 2 - 1) * 3;
+		this.velY = (handler.getRandom().nextInt(2) * 2 - 1) * 3;
+		
+		
+	}
+	
+	public ExplosionEnemy(Handler handler, float x, float y, float velX, float velY) {
+		super(handler, x, y, velX, velY);
+		// TODO Auto-generated constructor stub
+		id = ID.WAITINGENEMY;
+		width = 100;
+		height = 100;
 		
 	}
 
@@ -27,8 +39,6 @@ public class ExplosionEnemy extends GameObject{
 			return;
 		}
 		if(spawn_timer == 0) {
-			this.velX = (handler.getRandom().nextInt(2) * 2 - 1) * 3;
-			this.velY = (handler.getRandom().nextInt(2) * 2 - 1) * 3;
 			id = ID.EXPLOSIONENEMY;
 			spawn_timer--;
 		}
@@ -63,15 +73,15 @@ public class ExplosionEnemy extends GameObject{
 		if(id == ID.EXPLOSIONENEMY && spawn_timer == -1) {
 			int spawnVelX = 0, spawnVelY = speed;
 
-			handler.addObject(new ExplosionPelletEnemy(handler, x + width/2, y + height/2, 20, 20, 0, speed));
-			handler.addObject(new ExplosionPelletEnemy(handler, x + width/2, y + height/2, 20, 20, 0, -speed));
-			handler.addObject(new ExplosionPelletEnemy(handler, x + width/2, y + height/2, 20, 20, speed, 0));
-			handler.addObject(new ExplosionPelletEnemy(handler, x + width/2, y + height/2, 20, 20, speed, speed));
-			handler.addObject(new ExplosionPelletEnemy(handler, x + width/2, y + height/2, 20, 20, speed, -speed));
-			handler.addObject(new ExplosionPelletEnemy(handler, x + width/2, y + height/2, 20, 20, -speed, 0));
-			handler.addObject(new ExplosionPelletEnemy(handler, x + width/2, y + height/2, 20, 20, -speed, speed));
-			handler.addObject(new ExplosionPelletEnemy(handler, x + width/2, y + height/2, 20, 20, -speed, -speed));
-			
+			handler.addObject(new ExplosionPelletEnemy(handler, x + width/2, y + height/2, 0, speed));
+			handler.addObject(new ExplosionPelletEnemy(handler, x + width/2, y + height/2, 0, -speed));
+			handler.addObject(new ExplosionPelletEnemy(handler, x + width/2, y + height/2, speed, 0));
+			handler.addObject(new ExplosionPelletEnemy(handler, x + width/2, y + height/2, speed, speed));
+			handler.addObject(new ExplosionPelletEnemy(handler, x + width/2, y + height/2, speed, -speed));
+			handler.addObject(new ExplosionPelletEnemy(handler, x + width/2, y + height/2, -speed, 0));
+			handler.addObject(new ExplosionPelletEnemy(handler, x + width/2, y + height/2, -speed, speed));
+			handler.addObject(new ExplosionPelletEnemy(handler, x + width/2, y + height/2, -speed, -speed));
+			System.out.println("HI");
 			
 			handler.removeObject(this);
 		}

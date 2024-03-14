@@ -10,6 +10,7 @@ import com.wave3.main.Gamestate;
 public class FastEnemy extends GameObject{
 	
 	private int spawn_timer = 60;
+	private float cap = 10;
 
 	public FastEnemy(Handler handler) {
 		super(handler);
@@ -30,13 +31,27 @@ public class FastEnemy extends GameObject{
 		}
 		if(spawn_timer == 0) {
 			this.velX = (handler.getRandom().nextInt(2) * 2 - 1) * 5;
-			this.velY = (handler.getRandom().nextInt(2) * 2 - 1) * 10;
+			this.velY = (handler.getRandom().nextInt(2) * 2 - 1) * 5;
 			id = ID.BASICENEMY;
 			spawn_timer--;
 		}
 		// Update the position
 		x += velX;
 		y += velY;
+		
+		velX *= 1.001;
+		velY *= 1.001;
+		
+		if(velX > cap) {
+			velX = cap;
+		}else if(velX < -cap) {
+			velX = -cap;
+		}
+		if(velY > cap) {
+			velY = cap;
+		}else if(velY < -cap) {
+			velY = -cap;
+		}
 
 		clamp();
 		

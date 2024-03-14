@@ -8,11 +8,11 @@ import com.wave3.main.Gamestate;
 
 public class ExplosionPelletEnemy extends GameObject{
 	
-	public ExplosionPelletEnemy(Handler handler, float x, float y, float width, float height, int velX, int velY) {
-		super(handler, x, y, width, height);
-		// TODO Auto-generated constructor stub
-		this.velX = velX;
-		this.velY = velY;
+	public ExplosionPelletEnemy(Handler handler, float x, float y, float velX, float velY) {
+		super(handler, x, y, velX, velY);
+		
+		this.width = 20;
+		this.height = 20;
 	}
 
 	@Override
@@ -20,6 +20,9 @@ public class ExplosionPelletEnemy extends GameObject{
 		// Update the position
 		x += velX;
 		y += velY;
+		
+		velX *= 1.01;
+		velY *= 1.01;
 
 		clamp();
 		
