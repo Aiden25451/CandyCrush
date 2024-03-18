@@ -21,8 +21,8 @@ public class ExplosionPelletEnemy extends GameObject{
 		x += velX;
 		y += velY;
 		
-		velX *= 1.01;
-		velY *= 1.01;
+		velX *= 1.005;
+		velY *= 1.005;
 
 		clamp();
 		

@@ -20,8 +20,8 @@ public class SmartEnemy extends GameObject{
 		
 		x = handler.getRandom().nextInt(GameWindow.GAMEWIDTH - 200) + 50;
 		y = handler.getRandom().nextInt(GameWindow.GAMEHEIGHT - 200) + 50;
-		width = 25;
-		height = 25;
+		width = 40;
+		height = 40;
 		
 		
 		for(int i = 0; i < handler.getObjects().size(); i++) {

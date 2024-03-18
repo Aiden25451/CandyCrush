@@ -18,8 +18,8 @@ public class BasicEnemy extends GameObject{
 		
 		x = handler.getRandom().nextInt(GameWindow.GAMEWIDTH - 200) + 50;
 		y = handler.getRandom().nextInt(GameWindow.GAMEHEIGHT - 200) + 50;
-		width = 25;
-		height = 25;
+		width = 40;
+		height = 40;
 		
 	}
 

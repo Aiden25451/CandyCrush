@@ -3,6 +3,7 @@ package com.wave3.gameElement;
 import com.wave3.main.GameWindow;
 import com.wave3.main.Gamestate;
 import com.wave3.objects.BasicEnemy;
+import com.wave3.objects.BossEnemy;
 import com.wave3.objects.ExplosionEnemy;
 import com.wave3.objects.FastEnemy;
 import com.wave3.objects.Player;
@@ -21,20 +22,19 @@ public class Spawner {
 			handler.addObject(new Player(handler, handler.getKeyboardListener()));
 		}
 		else if(Gamestate.level == 2) {
-			handler.addObject(new BasicEnemy(handler));
+			handler.addObject(new BossEnemy(handler));
 		}
 		else if(Gamestate.level == 3) {
-			handler.addObject(new FastEnemy(handler));
+			
 		}
 		else if(Gamestate.level == 4) {
-			handler.addObject(new SmartEnemy(handler));
+			handler.addObject(new BasicEnemy(handler));
 		}
 		else if(Gamestate.level == 5) {
-			handler.addObject(new ExplosionEnemy(handler, 100, 300, -5, -5));
-			handler.addObject(new ExplosionEnemy(handler, GameWindow.GAMEWIDTH - 200, 300, 5, 5));
+			handler.addObject(new FastEnemy(handler));
 		}
 		else if(Gamestate.level == 6) {
-			handler.addObject(new BasicEnemy(handler));
+			handler.addObject(new SmartEnemy(handler));
 		}
 		else if(Gamestate.level == 7) {
 			handler.addObject(new BasicEnemy(handler));
@@ -43,79 +43,24 @@ public class Spawner {
 			handler.addObject(new BasicEnemy(handler));
 		}
 		else if(Gamestate.level == 9) {
-			handler.removeEnemies();
+			handler.addObject(new BasicEnemy(handler));
 		}
 		else if(Gamestate.level == 10) {
-			handler.addObject(new ExplosionEnemy(handler, 100, 100, 0, 5));
-			handler.addObject(new ExplosionEnemy(handler, 250, 100, 0, 5));
-			handler.addObject(new ExplosionEnemy(handler, 400, 100, 0, 5));
-			handler.addObject(new ExplosionEnemy(handler, 550, 100, 0, 5));
-			handler.addObject(new ExplosionEnemy(handler, 700, 100, 0, 5));
-			handler.addObject(new ExplosionEnemy(handler, 100, 400, 0, -5));
-			handler.addObject(new ExplosionEnemy(handler, 250, 400, 0, -5));
-			handler.addObject(new ExplosionEnemy(handler, 400, 400, 0, -5));
-			handler.addObject(new ExplosionEnemy(handler, 550, 400, 0, -5));
-			handler.addObject(new ExplosionEnemy(handler, 700, 400, 0, -5));
+			handler.removeEnemies();
 		}
-		else if(Gamestate.level == 15) {
-			handler.addObject(new SmartEnemy(handler));
-			handler.addObject(new SmartEnemy(handler));
-			handler.addObject(new SmartEnemy(handler));
-			handler.addObject(new SmartEnemy(handler));
-			handler.addObject(new SmartEnemy(handler));
-			handler.addObject(new BasicEnemy(handler));
-			handler.addObject(new BasicEnemy(handler));
-			handler.addObject(new BasicEnemy(handler));
-			handler.addObject(new BasicEnemy(handler));
-			handler.addObject(new BasicEnemy(handler));
-			handler.addObject(new FastEnemy(handler));
-			handler.addObject(new FastEnemy(handler));
-			handler.addObject(new FastEnemy(handler));
-			handler.addObject(new FastEnemy(handler));
-			handler.addObject(new FastEnemy(handler));
-			handler.addObject(new BasicEnemy(handler));
-			handler.addObject(new BasicEnemy(handler));
-			handler.addObject(new BasicEnemy(handler));
-			handler.addObject(new BasicEnemy(handler));
-			handler.addObject(new BasicEnemy(handler));
-			handler.addObject(new FastEnemy(handler));
-			handler.addObject(new FastEnemy(handler));
-			handler.addObject(new FastEnemy(handler));
-			handler.addObject(new FastEnemy(handler));
-			handler.addObject(new FastEnemy(handler));
-			handler.addObject(new BasicEnemy(handler));
-			handler.addObject(new BasicEnemy(handler));
-			handler.addObject(new BasicEnemy(handler));
-			handler.addObject(new BasicEnemy(handler));
-			handler.addObject(new BasicEnemy(handler));
-			handler.addObject(new FastEnemy(handler));
-			handler.addObject(new FastEnemy(handler));
-			handler.addObject(new FastEnemy(handler));
-			handler.addObject(new FastEnemy(handler));
-			handler.addObject(new FastEnemy(handler));
-			handler.addObject(new ExplosionEnemy(handler, 100, 100, 0, 5));
-			handler.addObject(new ExplosionEnemy(handler, 250, 100, 0, 5));
-			handler.addObject(new ExplosionEnemy(handler, 400, 100, 0, 5));
-			handler.addObject(new ExplosionEnemy(handler, 550, 100, 0, 5));
-			handler.addObject(new ExplosionEnemy(handler, 700, 100, 0, 5));
-			handler.addObject(new ExplosionEnemy(handler, 100, 400, 0, -5));
-			handler.addObject(new ExplosionEnemy(handler, 250, 400, 0, -5));
-			handler.addObject(new ExplosionEnemy(handler, 400, 400, 0, -5));
-			handler.addObject(new ExplosionEnemy(handler, 550, 400, 0, -5));
-			handler.addObject(new ExplosionEnemy(handler, 700, 400, 0, -5));
-		}
-		else if(Gamestate.level == 16) {
-			handler.addObject(new ExplosionEnemy(handler, 100, 100, 0, 5));
-			handler.addObject(new ExplosionEnemy(handler, 250, 100, 0, 5));
-			handler.addObject(new ExplosionEnemy(handler, 400, 100, 0, 5));
-			handler.addObject(new ExplosionEnemy(handler, 550, 100, 0, 5));
-			handler.addObject(new ExplosionEnemy(handler, 700, 100, 0, 5));
-			handler.addObject(new ExplosionEnemy(handler, 100, 400, 0, -5));
-			handler.addObject(new ExplosionEnemy(handler, 250, 400, 0, -5));
-			handler.addObject(new ExplosionEnemy(handler, 400, 400, 0, -5));
-			handler.addObject(new ExplosionEnemy(handler, 550, 400, 0, -5));
-			handler.addObject(new ExplosionEnemy(handler, 700, 400, 0, -5));
-		}
+//		else if(Gamestate.level == 10) {
+//			handler.addObject(new ExplosionEnemy(handler, 100, 100, 0, 5));
+//			handler.addObject(new ExplosionEnemy(handler, 250, 100, 0, 5));
+//			handler.addObject(new ExplosionEnemy(handler, 400, 100, 0, 5));
+//			handler.addObject(new ExplosionEnemy(handler, 550, 100, 0, 5));
+//			handler.addObject(new ExplosionEnemy(handler, 700, 100, 0, 5));
+//			handler.addObject(new ExplosionEnemy(handler, 100, 400, 0, -5));
+//			handler.addObject(new ExplosionEnemy(handler, 250, 400, 0, -5));
+//			handler.addObject(new ExplosionEnemy(handler, 400, 400, 0, -5));
+//			handler.addObject(new ExplosionEnemy(handler, 550, 400, 0, -5));
+//			handler.addObject(new ExplosionEnemy(handler, 700, 400, 0, -5));
+//		}
+		
 		
 	}
 	

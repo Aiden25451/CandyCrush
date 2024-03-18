@@ -17,8 +17,8 @@ public class ExplosionEnemy extends GameObject{
 		id = ID.WAITINGENEMY;
 		width = 100;
 		height = 100;
-		this.velX = (handler.getRandom().nextInt(2) * 2 - 1) * 3;
-		this.velY = (handler.getRandom().nextInt(2) * 2 - 1) * 3;
+		this.velX = (handler.getRandom().nextInt(2) * 2 - 1) * speed;
+		this.velY = (handler.getRandom().nextInt(2) * 2 - 1) * speed;
 		
 		
 	}
@@ -81,7 +81,6 @@ public class ExplosionEnemy extends GameObject{
 			handler.addObject(new ExplosionPelletEnemy(handler, x + width/2, y + height/2, -speed, 0));
 			handler.addObject(new ExplosionPelletEnemy(handler, x + width/2, y + height/2, -speed, speed));
 			handler.addObject(new ExplosionPelletEnemy(handler, x + width/2, y + height/2, -speed, -speed));
-			System.out.println("HI");
 			
 			handler.removeObject(this);
 		}
