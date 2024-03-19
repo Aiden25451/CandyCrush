@@ -11,7 +11,8 @@ import com.wave3.main.Gamestate;
 
 public class BossEnemy extends GameObject{
 	
-	private int spawn_timer = 0;
+	private int spawn_timer = 30;
+	private int exit_timer = 1250;
 	private int speed = 1;
 	
 	private float rotation = 0;
@@ -45,6 +46,15 @@ public class BossEnemy extends GameObject{
 		
 		if(y + height/2 == GameWindow.GAMEHEIGHT/2) {
 			velY = 0;
+			exit_timer--;
+		}
+		
+		if(exit_timer <= 0) {
+			velY = 1;
+		}
+		
+		if(y > GameWindow.GAMEHEIGHT) {
+			handler.removeObject(this);
 		}
 
 	}
