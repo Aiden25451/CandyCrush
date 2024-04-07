@@ -37,6 +37,16 @@ public class Spawner {
 			handler.addObject(new SmartEnemy(handler));
 		}
 		else if(Gamestate.level == 7) {
+			handler.addObject(new BasicEnemy(handler));
+		}
+		else if(Gamestate.level == 8) {
+			handler.addObject(new BasicEnemy(handler));
+		}
+		else if(Gamestate.level == 9) {
+			//handler.addObject(new BasicEnemy(handler));
+		}
+		else if(Gamestate.level == 10) {
+
 			handler.removeEnemies();
 		}
 		

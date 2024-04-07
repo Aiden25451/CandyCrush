@@ -82,7 +82,7 @@ public class Gamestate {
 			g.drawString("Previous Score: " + Gamestate.score, 300, 200);
 			g.drawString("Press Enter to Play!", 300, 250);
 
-			//g.drawRect(400, 250, 200, 64);
+			
 			//g.drawString("Help", 450, 290);
 
 			//g.drawRect(400, 350, 200, 64);
