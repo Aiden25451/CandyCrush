@@ -107,7 +107,6 @@ public class GameEngine implements Runnable{
 		
 		g2d.setColor(Color.BLACK);
 		g2d.fillRect(0, 0, GameWindow.GAMEWIDTH, GameWindow.GAMEHEIGHT);
-		
 //		handler.render(g2d);
 //		hud.render(g2d);
 		gamestate.render(g2d);
