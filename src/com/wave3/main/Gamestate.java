@@ -6,7 +6,9 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 import com.wave3.gameElement.HUD;
@@ -19,6 +21,8 @@ public class Gamestate extends MouseAdapter{
 	public static String GAMESTATE;
 	public static float health = 1000;
 	public static int score = 0, level = 0;
+	public static int highScore = 0, previousHighScore = 0;;
+	
 	
 	
 	private Handler handler;
@@ -26,6 +30,8 @@ public class Gamestate extends MouseAdapter{
 	
 	private Spawner spawner;
 	private HUD hud;
+	
+	
 	
 	public Gamestate(Handler handler, HUD hud) {
 		this.handler = handler;
@@ -101,6 +107,7 @@ public class Gamestate extends MouseAdapter{
 		}
 		else if(GAMESTATE == "game") {
 //			TASKS
+			if(hud == null) return;
 			hud.tick();
 			handler.tick();
 			
@@ -141,9 +148,17 @@ public class Gamestate extends MouseAdapter{
 	        g.drawImage(gifIcon.getImage(), 0, 0, null);
 	    }
 		else {
-			ImageIcon backgroundImageIcon = new ImageIcon("res/background/kerry-park.png"); // Change "game_background.jpg" to your image path
-	        Image backgroundImage = backgroundImageIcon.getImage();
-	        g.drawImage(backgroundImage, 0, 0, GameWindow.GAMEWIDTH, GameWindow.GAMEHEIGHT, null);
+	        ImageIcon backgroundImage = null; // Declare ImageIcon variable outside try-catch block
+
+	        backgroundImage = new ImageIcon("res/background/checkered-grass.png");
+	        if (backgroundImage != null) { // Check if background image is successfully loaded
+	            Image bgImage = backgroundImage.getImage(); // Get the Image object from ImageIcon
+	            for (int row = 0; row < GameWindow.GAMEHEIGHT / 64 + 1; row++) {
+	                for (int col = 0; col < GameWindow.GAMEWIDTH / 64 + 1; col++) {
+	                    g.drawImage(bgImage, 64 * col, 64 * row, 64, 64, null); // Draw the background image
+	                }
+	            }
+	        }
 		}
 		if(GAMESTATE == "start") {
 			/*g.setFont(new Font("Comic Sans MS", Font.PLAIN, 48));
@@ -159,7 +174,8 @@ public class Gamestate extends MouseAdapter{
 
 			g.setFont(fnt2);
 			//g.drawRect(275, 165, 350, 100);
-			g.drawString("Previous Score: " + Gamestate.score, 305, 150);
+			g.drawString("Previous Score: " + Gamestate.previousHighScore, 305, 120);
+			g.drawString("High Score: " + Gamestate.highScore, 330, 170);
 			//g.drawString("Press Enter to Play!", 300, 250);
 
 			g.setColor(Color.white); // Change the color of the button name
@@ -200,6 +216,9 @@ public class Gamestate extends MouseAdapter{
 			g.drawString("Game Paused", 275, 70);
 
 			g.setFont(fnt2);
+			g.setColor(Color.white); // Change the color of the button name
+	        g.fillRect(265, 145, 360, 100); // Change the background color of the button
+	        g.setColor(Color.black);
 			g.drawRect(265, 145, 360, 100);
 			g.drawString("Current Score: " + Gamestate.score, 310, 180);
 			g.drawString("Press Enter to Continue", 270, 230);
@@ -216,11 +235,15 @@ public class Gamestate extends MouseAdapter{
 			Font fnt2 = new Font("arial", 1, 30);
 			
 			g.setFont(fnt);
-			g.setColor(Color.white);
+			g.setColor(Color.black);
 			g.drawString("Help", 395, 70);
 			
 			g.setFont(fnt2);
-			g.drawString("Use WASD to move and dodge eneimes", 180, 300);
+			g.setColor(Color.white); // Change the color of the button name
+	        g.fillRect(155, 225, 600, 64); // Change the background color of the button
+	        g.setColor(Color.black);
+			g.drawRect(155, 225, 600, 64);
+			g.drawString("Use WASD to move and dodge eneimes", 170, 270);
 			
 			g.setFont(fnt2);
 			g.setColor(Color.white); // Change the color of the button name
@@ -239,5 +262,10 @@ public class Gamestate extends MouseAdapter{
 		level = 0;
 		this.spawner = new Spawner(handler);
 		this.hud = new HUD(handler, spawner);
+		
+		// Save the current high score as the previous high score
+        previousHighScore = highScore;
+        // Reset the high score
+        highScore = 0;
 	}
 }

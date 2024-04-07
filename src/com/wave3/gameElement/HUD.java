@@ -32,7 +32,10 @@ public class HUD {
 			handler.removeAll();
 			Gamestate.health = 1000;
 		}
-		Gamestate.score++;
+		Gamestate.score++; //for the highscore tracker
+		if (Gamestate.score > Gamestate.highScore) {
+            Gamestate.highScore = Gamestate.score;
+        }
 		
 	}
 	
