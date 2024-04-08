@@ -33,9 +33,15 @@ public class HUD {
 			Gamestate.health = 1000;
 		}
 		Gamestate.score++; //for the highscore tracker
-		if (Gamestate.score > Gamestate.highScore) {
-            Gamestate.highScore = Gamestate.score;
-        }
+		
+		 if (Gamestate.score > Gamestate.currentScore) {
+		        Gamestate.currentScore = Gamestate.score;
+
+		        // Only update the previous high score if the current score is greater
+		        if (Gamestate.currentScore > Gamestate.previousHighScore) {
+		            Gamestate.previousHighScore = Gamestate.currentScore;
+		        }
+		    }
 		
 	}
 	
