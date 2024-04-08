@@ -21,7 +21,7 @@ public class Gamestate extends MouseAdapter{
 	public static String GAMESTATE;
 	public static float health = 1000;
 	public static int score = 0, level = 0;
-	public static int highScore = 0, previousHighScore = 0;;
+	public static int currentScore = 0, previousHighScore = 0;;
 	
 	
 	
@@ -148,7 +148,7 @@ public class Gamestate extends MouseAdapter{
 	        g.drawImage(gifIcon.getImage(), 0, 0, null);
 	    }
 		else {
-	        ImageIcon backgroundImage = null; // Declare ImageIcon variable outside try-catch block
+	        ImageIcon backgroundImage = null;
 
 	        backgroundImage = new ImageIcon("res/background/checkered-grass.png");
 	        if (backgroundImage != null) { // Check if background image is successfully loaded
@@ -174,8 +174,8 @@ public class Gamestate extends MouseAdapter{
 
 			g.setFont(fnt2);
 			//g.drawRect(275, 165, 350, 100);
-			g.drawString("Previous Score: " + Gamestate.previousHighScore, 305, 120);
-			g.drawString("High Score: " + Gamestate.highScore, 330, 170);
+			g.drawString("Previous High Score: " + Gamestate.previousHighScore, 285, 120);
+			g.drawString("Current Score: " + Gamestate.currentScore, 330, 170);
 			//g.drawString("Press Enter to Play!", 300, 250);
 
 			g.setColor(Color.white); // Change the color of the button name
@@ -243,7 +243,7 @@ public class Gamestate extends MouseAdapter{
 	        g.fillRect(155, 225, 600, 64); // Change the background color of the button
 	        g.setColor(Color.black);
 			g.drawRect(155, 225, 600, 64);
-			g.drawString("Use WASD to move and dodge eneimes", 170, 270);
+			g.drawString("Use WASD to move and dodge enemies", 170, 270);
 			
 			g.setFont(fnt2);
 			g.setColor(Color.white); // Change the color of the button name
@@ -263,9 +263,8 @@ public class Gamestate extends MouseAdapter{
 		this.spawner = new Spawner(handler);
 		this.hud = new HUD(handler, spawner);
 		
-		// Save the current high score as the previous high score
-        previousHighScore = highScore;
-        // Reset the high score
-        highScore = 0;
+		
+        // Reset the current score
+        currentScore = 0;
 	}
 }
